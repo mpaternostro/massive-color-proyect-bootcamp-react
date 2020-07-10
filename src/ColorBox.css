@@ -1,0 +1,73 @@
+:root {
+  --backgroundColorBox: rgba(255, 255, 255, 0.3);
+}
+
+.ColorBox {
+  display: flex;
+  flex: 1;
+  min-width: 20%;
+  min-height: 42px;
+}
+
+.ColorBox > * {
+  max-width: 33.333333333%;
+}
+
+.ColorBox p {
+  margin: 0;
+  padding: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.ColorBox-copy {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+  align-self: center;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.ColorBox-copy p {
+  width: fit-content;
+  background-color: var(--backgroundColorBox);
+  padding: 10px;
+  margin: 0;
+}
+
+.ColorBox:hover .ColorBox-copy {
+  opacity: 1;
+}
+
+.ColorBox-name {
+  flex: 1;
+  align-self: flex-end;
+}
+
+.ColorBox-options {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.ColorBox-options p {
+  width: fit-content;
+  background-color: var(--backgroundColorBox);
+}
+
+@media (max-width: 1400px) {
+  .ColorBox {
+    min-width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .ColorBox {
+    min-width: 100%;
+  }
+}

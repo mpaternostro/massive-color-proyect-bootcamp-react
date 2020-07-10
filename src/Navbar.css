@@ -1,0 +1,33 @@
+.Navbar {
+  height: 8vh;
+  display: flex;
+  align-items: center;
+}
+
+.Navbar-palette-name {
+  background-color: tomato;
+  padding: 0 10px;
+  height: 100%;
+}
+
+.Navbar-slider-level {
+  margin-left: 3rem;
+}
+
+.Navbar-slider {
+  width: 30%;
+  margin-left: 1rem;
+}
+
+.rc-slider-rail {
+  height: 6px;
+}
+
+.rc-slider-track {
+  background-color: transparent;
+}
+
+.rc-slider-handle {
+  background-color: darkgreen;
+  border: none;
+}
