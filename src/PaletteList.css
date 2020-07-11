@@ -1,0 +1,21 @@
+.PaletteList {
+  width: 50vw;
+  margin: auto;
+  padding: 4rem 0;
+}
+
+.PaletteList-item {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+}
+
+.PaletteList-item--boxes {
+  flex: 1;
+}
+
+.PaletteList-item--name {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}

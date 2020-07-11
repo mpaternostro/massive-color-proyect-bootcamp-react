@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "./Alert";
 import Navbar from "./Navbar";
+import CopySuccess from "./CopySuccess";
+import FormatChange from "./FormatChange";
 import ColorBox from "./ColorBox";
 import "./Palette.css";
 
@@ -10,56 +10,85 @@ export class Palette extends Component {
     super(props);
 
     this.state = {
-      copied: false,
+      copiedSnackbar: false,
       copiedColor: undefined,
       level: 500,
+      format: "hex",
+      formatSnackbar: false,
     };
+
     this.setCopied = this.setCopied.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleColorLevel = this.handleColorLevel.bind(this);
+    this.setColorLevel = this.setColorLevel.bind(this);
+    this.setFormat = this.setFormat.bind(this);
+    this.closeCopySuccess = this.closeCopySuccess.bind(this);
+    this.closeFormatChange = this.closeFormatChange.bind(this);
   }
 
-  setCopied = (color) => {
-    this.setState({ copied: true, color });
+  setCopied = (copiedColor) => {
+    this.setState({ copiedSnackbar: true, copiedColor });
   };
 
-  handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    this.setState({ copied: false });
-  };
-
-  handleColorLevel = (value) => {
+  setColorLevel = (value) => {
     this.setState({ level: value });
+  };
+
+  setFormat = (evt) => {
+    this.setState({ format: evt.target.value, formatSnackbar: true });
+  };
+
+  closeCopySuccess = (evt, reason) => {
+    this.setState({ copiedSnackbar: false });
+  };
+
+  closeFormatChange = (evt, reason) => {
+    this.setState({ formatSnackbar: false });
   };
 
   render() {
     const { paletteName, emoji, colors } = this.props.palette;
-    const { copied, copiedColor, level } = this.state;
-    const name = `${paletteName} ${emoji}`;
-    const boxes = colors[level].map(({ name, hex }) => (
-      <ColorBox key={name} color={hex} name={name} setCopied={this.setCopied} />
+    const {
+      copiedSnackbar,
+      copiedColor,
+      level,
+      format,
+      formatSnackbar,
+    } = this.state;
+    const boxes = colors[level].map((color) => (
+      <ColorBox
+        key={color.name}
+        color={color[this.state.format]}
+        name={color.name}
+        setCopied={this.setCopied}
+      />
     ));
 
     return (
       <>
         <Navbar
-          name={name}
           level={level}
-          handleColorLevel={this.handleColorLevel}
+          handleColorLevel={this.setColorLevel}
+          format={this.state.format}
+          handleFormatChange={this.setFormat}
         />
-        <div className="Palette">{boxes}</div>
-        <Snackbar
-          open={copied}
-          autoHideDuration={3000}
-          onClose={this.handleClose}
-        >
-          <Alert onClose={this.handleClose} severity="success">
-            Copied color {copiedColor}
-          </Alert>
-        </Snackbar>
+        <div className="Palette-boxes">{boxes}</div>
+        {copiedSnackbar && (
+          <CopySuccess
+            open={copiedSnackbar}
+            copiedColor={copiedColor}
+            handleClose={this.closeCopySuccess}
+          />
+        )}
+        {formatSnackbar && (
+          <FormatChange
+            open={formatSnackbar}
+            handleClose={this.closeFormatChange}
+            format={format}
+          />
+        )}
+        <footer className="Palette-footer">
+          <span>{paletteName}</span>
+          <span className="Palette-footer-emoji">{emoji}</span>
+        </footer>
       </>
     );
   }

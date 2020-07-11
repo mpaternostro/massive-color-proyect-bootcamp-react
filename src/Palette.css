@@ -1,5 +1,19 @@
-.Palette {
-  height: 80vh;
+.Palette-boxes {
+  height: 87vh;
   display: flex;
   flex-wrap: wrap;
+}
+
+.Palette-footer {
+  height: 5vh;
+  background-color: tomato;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.Palette-footer-emoji {
+  margin: 0 0.5rem;
 }
