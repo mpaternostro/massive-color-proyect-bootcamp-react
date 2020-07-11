@@ -1,40 +1,57 @@
 import React, { Component } from "react";
+import MiniPalette from "./MiniPalette";
 import { Link } from "react-router-dom";
-import { Grid, Paper } from "@material-ui/core";
-import "./PaletteList.css";
+import { Grid } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = {
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    height: "100vh",
+    width: "100%",
+    backgroundColor: "#1E84D0",
+  },
+  container: {
+    width: "50%",
+    margin: "2rem 0",
+  },
+  navigator: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  link: {
+    textDecoration: "none",
+    color: "black",
+  },
+};
 
 export class PaletteList extends Component {
   render() {
-    const links = this.props.palettes.map((palette) => {
-      const { paletteName, id, emoji } = palette;
-      return (
-        <Grid item xs={12} md={6} lg={4} key={id}>
-          <Paper>
-            <Link className="PaletteList-item" to={`/palette/${id}`}>
-              <div className="PaletteList-item--box">
-                Mini Palette goes here!
-              </div>
-              <div className="PaletteList-item--name">
-                <span>{paletteName}</span>
-                <span>{emoji}</span>
-              </div>
-            </Link>
-          </Paper>
-        </Grid>
-      );
+    const { classes } = this.props;
+    const miniPalettes = this.props.palettes.map((palette) => {
+      return <MiniPalette key={palette.id} {...palette} />;
     });
 
     return (
-      <div className="PaletteList">
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
+      <div className={classes.root}>
+        <div className={classes.container}>
+          <nav className={classes.navigator}>
             <h2>React Colors</h2>
+            <Link to="/new-palette" className={classes.link}>
+              Create Palette(WIP)
+            </Link>
+          </nav>
+          <Grid container spacing={3}>
+            <Grid item xs={12}></Grid>
+            {miniPalettes}
           </Grid>
-          {links}
-        </Grid>
+        </div>
       </div>
     );
   }
 }
 
-export default PaletteList;
+export default withStyles(styles)(PaletteList);
