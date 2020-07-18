@@ -1,7 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Grid, Paper } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 const styles = {
   container: {
@@ -11,10 +10,9 @@ const styles = {
     height: "200px",
     textDecoration: "none",
     color: "black",
-  },
-  link: {
-    textDecoration: "none",
-    cursor: "pointer",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   miniColorBoxes: {
     margin: "0.5rem",
@@ -34,7 +32,7 @@ const styles = {
 };
 
 function MiniPalette(props) {
-  const { classes, paletteName, id, emoji, colors } = props;
+  const { classes, paletteName, emoji, colors, handleClick } = props;
   const miniColorBoxes = colors.map(({ name, color }) => (
     <div
       key={name}
@@ -45,17 +43,15 @@ function MiniPalette(props) {
   ));
 
   return (
-    <Grid item xs={12} md={6} lg={4}>
+    <Grid item xs={12} md={6} lg={4} onClick={handleClick}>
       <Paper elevation={3}>
-        <Link to={`/palette/${id}`} className={classes.link}>
-          <div className={classes.container}>
-            <div className={classes.miniColorBoxes}>{miniColorBoxes}</div>
-            <div className={classes.title}>
-              <span>{paletteName}</span>
-              <span>{emoji}</span>
-            </div>
+        <div className={classes.container}>
+          <div className={classes.miniColorBoxes}>{miniColorBoxes}</div>
+          <div className={classes.title}>
+            <span>{paletteName}</span>
+            <span>{emoji}</span>
           </div>
-        </Link>
+        </div>
       </Paper>
     </Grid>
   );

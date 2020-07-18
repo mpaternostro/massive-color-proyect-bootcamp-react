@@ -7,7 +7,13 @@ import { Link } from "react-router-dom";
 
 export class Navbar extends Component {
   render() {
-    const { level, handleColorLevel, format, handleFormatChange } = this.props;
+    const {
+      level,
+      handleColorLevel,
+      format,
+      handleFormatChange,
+      displayColorLevel,
+    } = this.props;
     return (
       <div className="Navbar">
         <div className="Navbar-palette-name">
@@ -15,15 +21,19 @@ export class Navbar extends Component {
             <h1>React Color Picker</h1>
           </Link>
         </div>
-        <p className="Navbar-slider-level">Level: {level}</p>
-        <Slider
-          min={100}
-          max={900}
-          step={100}
-          defaultValue={level}
-          className="Navbar-slider"
-          onAfterChange={handleColorLevel}
-        />
+        {displayColorLevel && (
+          <div className="Navbar-slider-container">
+            <p className="Navbar-slider-level">Level: {level}</p>
+            <Slider
+              min={100}
+              max={900}
+              step={100}
+              defaultValue={level}
+              className="Navbar-slider"
+              onAfterChange={handleColorLevel}
+            />
+          </div>
+        )}
         <div className="Navbar-select">
           <FormControl variant="outlined">
             <InputLabel id="color-format">Format</InputLabel>

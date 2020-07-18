@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import seedColors from "./seedColors";
 
 const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
@@ -39,4 +40,21 @@ function getScale(hexColor, numberOfColors) {
   return chroma.scale(getRange(hexColor)).mode("lab").colors(numberOfColors);
 }
 
-export { generatePalette };
+function getPaletteColors(paletteID) {
+  const originalPalette = seedColors.find(({ id }) => id === paletteID);
+  return generatePalette(originalPalette);
+}
+
+function getSingleColorShades(paletteID, colorID) {
+  const palette = getPaletteColors(paletteID);
+  const { colors } = palette;
+  const singleColorShades = [];
+  for (let level in colors) {
+    singleColorShades.push(
+      ...colors[level].filter((color) => color.id === colorID)
+    );
+  }
+  return { palette, singleColorShades: singleColorShades.slice(1) };
+}
+
+export { getPaletteColors, getSingleColorShades };

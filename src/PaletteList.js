@@ -29,10 +29,20 @@ const styles = {
 };
 
 export class PaletteList extends Component {
+  goToPalette(paletteID) {
+    this.props.history.push(`/palette/${paletteID}`);
+  }
+
   render() {
     const { classes } = this.props;
     const miniPalettes = this.props.palettes.map((palette) => {
-      return <MiniPalette key={palette.id} {...palette} />;
+      return (
+        <MiniPalette
+          key={palette.id}
+          {...palette}
+          handleClick={this.goToPalette.bind(this, palette.id)}
+        />
+      );
     });
 
     return (
