@@ -1,38 +1,12 @@
 import React, { Component } from "react";
-import ColorBox from "./ColorBox";
-import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import CopySuccess from "./CopySuccess";
 import FormatChange from "./FormatChange";
 import PaletteFooter from "./PaletteFooter";
-
-const styles = (theme) => ({
-  colorBoxes: {
-    display: "flex",
-    flexWrap: "wrap",
-    height: "87vh",
-  },
-  goBack: {
-    backgroundColor: "black",
-    minWidth: "20%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    "& a": {
-      backgroundColor: "#4c5561",
-      color: "white",
-      textDecoration: "none",
-      padding: theme.spacing(1),
-    },
-    [theme.breakpoints.down("md")]: {
-      minWidth: "50%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      minWidth: "100%",
-    },
-  },
-});
+import styles from "./styles/PaletteStyles";
 
 export class SingleColorPalette extends Component {
   constructor(props) {

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Slider from "rc-slider";
-import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
-import "rc-slider/assets/index.css";
-import "./Navbar.css";
+import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import Slider from "rc-slider";
+import styles from "./styles/NavbarStyles";
+import "rc-slider/assets/index.css";
 
 export class Navbar extends Component {
   render() {
@@ -13,28 +14,29 @@ export class Navbar extends Component {
       format,
       handleFormatChange,
       displayColorLevel,
+      classes,
     } = this.props;
     return (
-      <div className="Navbar">
-        <div className="Navbar-palette-name">
+      <div className={classes.Navbar}>
+        <div className={classes.paletteName}>
           <Link to="/">
             <h1>React Color Picker</h1>
           </Link>
         </div>
         {displayColorLevel && (
-          <div className="Navbar-slider-container">
-            <p className="Navbar-slider-level">Level: {level}</p>
+          <div className={classes.sliderContainer}>
+            <p className={classes.sliderLevel}>Level: {level}</p>
             <Slider
               min={100}
               max={900}
               step={100}
               defaultValue={level}
-              className="Navbar-slider"
+              className={classes.slider}
               onAfterChange={handleColorLevel}
             />
           </div>
         )}
-        <div className="Navbar-select">
+        <div className={classes.formatSelect}>
           <FormControl variant="outlined">
             <InputLabel id="color-format">Format</InputLabel>
             <Select
@@ -54,4 +56,4 @@ export class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);

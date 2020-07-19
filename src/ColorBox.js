@@ -1,85 +1,8 @@
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
-import chroma from "chroma-js";
-import { withStyles } from "@material-ui/core/styles";
-
-const isDark = (color) => chroma(color).luminance() > 0.2;
-
-const getVisibleColor = (props) =>
-  isDark(props.backgroundColor)
-    ? "rgb(0, 0, 0, 0.8)"
-    : "rgb(255, 255, 255, 0.9)";
-
-const getVisibleBackground = (props) =>
-  isDark(props.backgroundColor)
-    ? "rgba(0, 0, 0, 0.1)"
-    : "rgba(255, 255, 255, 0.3)";
-
-const styles = (theme) => ({
-  ColorBox: {
-    backgroundColor: (props) => props.backgroundColor,
-    color: getVisibleColor,
-    display: "flex",
-    flex: "1",
-    minWidth: "20%",
-    minHeight: "42px",
-    "& div": {
-      maxWidth: "calc(100% / 3)",
-    },
-    "& p": {
-      margin: "0",
-      padding: "10px",
-      fontSize: "12px",
-      textTransform: "uppercase",
-      fontWeight: "500",
-      letterSpacing: "1px",
-      whiteSpace: "nowrap",
-    },
-    "&:hover $copyColor": {
-      opacity: "1",
-    },
-    [theme.breakpoints.down("md")]: {
-      minWidth: "50%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      minWidth: "100%",
-    },
-  },
-  copyColor: {
-    display: "flex",
-    justifyContent: "center",
-    flex: "1",
-    textAlign: "center",
-    alignSelf: "center",
-    opacity: "0",
-    transition: "opacity 0.5s",
-    "& p": {
-      width: "fit-content",
-      backgroundColor: getVisibleBackground,
-      padding: "10px",
-      margin: "0",
-    },
-  },
-  colorName: {
-    flex: "1",
-    alignSelf: "flex-end",
-  },
-  moreColors: {
-    flex: "1",
-    display: "flex",
-    justifyContent: "flex-end",
-    alignSelf: "flex-end",
-    "& a": {
-      color: "inherit",
-      textDecoration: "none",
-    },
-    "& p": {
-      width: "fit-content",
-      backgroundColor: getVisibleBackground,
-    },
-  },
-});
+import styles from "./styles/ColorBoxStyles";
 
 export class ColorBox extends Component {
   constructor(props) {
@@ -90,7 +13,7 @@ export class ColorBox extends Component {
   }
 
   handleCopy() {
-    this.props.setCopied(this.props.color);
+    this.props.setCopied(this.props.backgroundColor);
   }
 
   handleLink(evt) {

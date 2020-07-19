@@ -1,32 +1,9 @@
 import React, { Component } from "react";
-import MiniPalette from "./MiniPalette";
+import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
-
-const styles = {
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    height: "100vh",
-    width: "100%",
-    backgroundColor: "#1E84D0",
-  },
-  container: {
-    width: "50%",
-    margin: "2rem 0",
-  },
-  navigator: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  link: {
-    textDecoration: "none",
-    color: "black",
-  },
-};
+import MiniPalette from "./MiniPalette";
+import styles from "./styles/PaletteListStyles";
 
 export class PaletteList extends Component {
   goToPalette(paletteID) {

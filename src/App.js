@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import "./App.css";
-import PaletteList from "./PaletteList";
-import Palette from "./Palette";
-import SingleColorPalette from "./SingleColorPalette";
-import seedColors from "./seedColors";
 import { getPaletteColors, getSingleColorShades } from "./colorHelpers";
 import { Switch, Route, Redirect } from "react-router-dom";
+import seedColors from "./seedColors";
+import PaletteList from "./PaletteList";
+import NewPalette from "./NewPalette";
+import Palette from "./Palette";
+import SingleColorPalette from "./SingleColorPalette";
+import "./App.css";
 
 class App extends Component {
   getPalette = (routeProps) => {
@@ -47,6 +48,7 @@ class App extends Component {
             path="/palette/:paletteID/:colorID"
             render={this.getSingleColorPalette}
           />
+          <Route exact path="/new-palette" render={() => <NewPalette />} />
           <Route
             path="/page-not-found"
             render={() => <h1>Error 404: Page Not Found</h1>}

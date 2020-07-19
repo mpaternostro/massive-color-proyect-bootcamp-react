@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
 import Navbar from "./Navbar";
 import CopySuccess from "./CopySuccess";
 import FormatChange from "./FormatChange";
 import ColorBox from "./ColorBox";
 import PaletteFooter from "./PaletteFooter";
-import "./Palette.css";
+import styles from "./styles/PaletteStyles";
 
 export class Palette extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ export class Palette extends Component {
 
   render() {
     const { paletteName, emoji, id: paletteID, colors } = this.props.palette;
+    const { classes } = this.props;
     const {
       copiedSnackbar,
       copiedColor,
@@ -73,7 +75,7 @@ export class Palette extends Component {
           handleFormatChange={this.setFormat}
           displayColorLevel={true}
         />
-        <div className="Palette-boxes">{boxes}</div>
+        <div className={classes.colorBoxes}>{boxes}</div>
         {copiedSnackbar && (
           <CopySuccess
             open={copiedSnackbar}
@@ -94,4 +96,4 @@ export class Palette extends Component {
   }
 }
 
-export default Palette;
+export default withStyles(styles)(Palette);
