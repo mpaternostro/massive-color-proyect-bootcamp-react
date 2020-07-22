@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
@@ -25,7 +26,11 @@ export class ColorBox extends Component {
 
     return (
       <CopyToClipboard text={backgroundColor} onCopy={this.handleCopy}>
-        <div className={classes.ColorBox}>
+        <div
+          className={clsx(classes.ColorBox, {
+            [classes.ColorBoxFixedHeight]: moreUrl,
+          })}
+        >
           <div className={classes.colorName}>
             <p>{name}</p>
           </div>

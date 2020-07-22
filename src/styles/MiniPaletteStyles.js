@@ -13,11 +13,17 @@ export default {
   miniColorBoxes: {
     margin: "0.5rem",
     height: "100%",
-    display: "grid",
-    gridTemplateColumns: "repeat(5, 20%)",
+    // display: "grid",
+    // gridTemplateColumns: "repeat(5, 20%)",
     backgroundColor: "#dae1e4",
     borderRadius: "5px",
     overflow: "hidden",
+  },
+  miniColorBox: {
+    display: "inline-block",
+    width: "20%",
+    height: "25%",
+    marginBottom: "-4px",
   },
   title: {
     display: "flex",

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getPaletteColors, getSingleColorShades } from "./colorHelpers";
 import { Switch, Route, Redirect } from "react-router-dom";
-import seedColors from "./seedColors";
+import { PalettesContext } from "./contexts/PalettesContext";
 import PaletteList from "./PaletteList";
 import NewPalette from "./NewPalette";
 import Palette from "./Palette";
@@ -10,7 +10,10 @@ import "./App.css";
 
 class App extends Component {
   getPalette = (routeProps) => {
-    const paletteData = getPaletteColors(routeProps.match.params.id);
+    const paletteData = getPaletteColors(
+      this.context.palettes,
+      routeProps.match.params.id
+    );
     if (!paletteData) return <Redirect to="/page-not-found" />;
     return <Palette palette={paletteData} />;
   };
@@ -18,6 +21,7 @@ class App extends Component {
   getSingleColorPalette = (routeProps) => {
     const { paletteID, colorID } = routeProps.match.params;
     const { palette, singleColorShades } = getSingleColorShades(
+      this.context.palettes,
       paletteID,
       colorID
     );
@@ -39,7 +43,7 @@ class App extends Component {
             exact
             path="/"
             render={(routeProps) => (
-              <PaletteList palettes={seedColors} {...routeProps} />
+              <PaletteList palettes={this.context.palettes} {...routeProps} />
             )}
           />
           <Route exact path="/palette/:id" render={this.getPalette} />
@@ -48,7 +52,11 @@ class App extends Component {
             path="/palette/:paletteID/:colorID"
             render={this.getSingleColorPalette}
           />
-          <Route exact path="/new-palette" render={() => <NewPalette />} />
+          <Route
+            exact
+            path="/new-palette"
+            render={(routeProps) => <NewPalette {...routeProps} />}
+          />
           <Route
             path="/page-not-found"
             render={() => <h1>Error 404: Page Not Found</h1>}
@@ -58,5 +66,6 @@ class App extends Component {
     );
   }
 }
+App.contextType = PalettesContext;
 
 export default App;

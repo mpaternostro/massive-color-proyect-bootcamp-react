@@ -7,11 +7,12 @@ function MiniPalette(props) {
   const { classes, paletteName, emoji, colors, handleClick } = props;
   const miniColorBoxes = colors.map(({ name, color }) => (
     <div
+      className={classes.miniColorBox}
       key={name}
       style={{
         backgroundColor: color,
       }}
-    ></div>
+    />
   ));
 
   return (

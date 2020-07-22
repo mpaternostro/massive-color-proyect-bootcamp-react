@@ -43,6 +43,15 @@ export default (theme) => ({
       minWidth: widthXs,
     },
   },
+  ColorBoxFixedHeight: {
+    height: "25%",
+    [theme.breakpoints.down("md")]: {
+      height: "10%",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "auto",
+    },
+  },
   copyColor: {
     display: "flex",
     justifyContent: "center",
