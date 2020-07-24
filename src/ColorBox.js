@@ -26,11 +26,7 @@ export class ColorBox extends Component {
 
     return (
       <CopyToClipboard text={backgroundColor} onCopy={this.handleCopy}>
-        <div
-          className={clsx(classes.ColorBox, {
-            [classes.ColorBoxFixedHeight]: moreUrl,
-          })}
-        >
+        <div className={classes.ColorBox}>
           <div className={classes.colorName}>
             <p>{name}</p>
           </div>

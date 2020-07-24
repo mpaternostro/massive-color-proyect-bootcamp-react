@@ -14,62 +14,7 @@ import NewPaletteNav from "./NewPaletteNav";
 import DraggableColorList from "./DraggableColorList";
 import ColorPickerForm from "./ColorPickerForm";
 import { PalettesContext } from "./contexts/PalettesContext";
-
-const drawerWidth = 300;
-
-const styles = (theme) => ({
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
-  },
-  content: {
-    flexGrow: 1,
-    padding: "0",
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  currentPaletteColors: {
-    height: "calc(100vh - 64px)",
-    margin: "0",
-    padding: "0",
-  },
-  container: {
-    margin: "0.5rem",
-    display: "flex",
-    flexDirection: "column",
-  },
-  title: {},
-  buttons: {
-    display: "flex",
-    marginBottom: "1rem",
-    "& button": {
-      width: "50%",
-      margin: "4px",
-      padding: "8px 6px",
-    },
-  },
-});
+import styles from "./styles/NewPaletteStyles";
 
 export class NewPalette extends Component {
   static contextType = PalettesContext;
@@ -135,14 +80,10 @@ export class NewPalette extends Component {
     });
   }
 
-  handleAddPalette(evt, paletteName) {
-    evt.preventDefault();
-    const paletteNameErrorMessage = this.checkPaletteName(paletteName);
-    if (paletteNameErrorMessage)
-      return this.setState({ paletteNameErrorMessage });
-
+  handleAddPalette({ paletteName, emoji }) {
     const newPalette = {
       paletteName,
+      emoji,
       id: paletteName.toLowerCase().replace(/ /g, "-"),
       colors: this.state.currentPaletteColors,
     };
@@ -197,10 +138,10 @@ export class NewPalette extends Component {
         <NewPaletteNav
           toggleDrawer={this.toggleDrawer}
           open={open}
-          handleAddPalette={this.handleAddPalette}
           handleChange={this.handleChange}
           paletteName={paletteName}
           paletteNameErrorMessage={paletteNameErrorMessage}
+          handleAddPalette={this.handleAddPalette}
         />
         <Drawer
           variant="persistent"

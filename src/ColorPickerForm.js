@@ -2,28 +2,7 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { ChromePicker } from "react-color";
 import { Button, TextField } from "@material-ui/core";
-
-const styles = (theme) => ({
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  colorPicker: {
-    width: "90% !important",
-    "& input, span": {
-      fontFamily: "Roboto, sans-serif",
-    },
-  },
-  colorNameInput: {
-    width: "90%",
-  },
-  addColorBtn: {
-    width: "90%",
-    height: "4rem",
-    fontSize: "1.5rem",
-  },
-});
+import styles from "./styles/ColorPickerFormStyles";
 
 export class ColorPickerForm extends Component {
   constructor(props) {

@@ -1,20 +1,21 @@
 export default {
   container: {
+    position: "relative",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     height: "200px",
     textDecoration: "none",
     color: "black",
-    "&:hover": {
-      cursor: "pointer",
+    cursor: "pointer",
+    "&:hover $delete": {
+      opacity: "1",
+      backgroundColor: "#f34f28",
     },
   },
   miniColorBoxes: {
     margin: "0.5rem",
     height: "100%",
-    // display: "grid",
-    // gridTemplateColumns: "repeat(5, 20%)",
     backgroundColor: "#dae1e4",
     borderRadius: "5px",
     overflow: "hidden",
@@ -30,5 +31,14 @@ export default {
     justifyContent: "space-between",
     padding: "10px",
     fontWeight: "bold",
+  },
+  delete: {
+    position: "absolute",
+    right: "0",
+    padding: "10px",
+    opacity: "0",
+    color: "white",
+    borderRadius: "0",
+    transition: "all 0.3s ease-in-out",
   },
 };

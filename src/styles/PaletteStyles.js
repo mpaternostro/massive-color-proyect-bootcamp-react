@@ -1,4 +1,4 @@
-import { widthMd, widthXs } from "./ColorBoxStyles";
+import { WIDTH_SM, WIDTH_XS } from "../constants";
 
 export default (theme) => ({
   colorBoxes: {
@@ -18,11 +18,11 @@ export default (theme) => ({
       textDecoration: "none",
       padding: theme.spacing(1),
     },
-    [theme.breakpoints.down("md")]: {
-      width: widthMd,
+    [theme.breakpoints.down("sm")]: {
+      width: WIDTH_SM,
     },
     [theme.breakpoints.down("xs")]: {
-      width: widthXs,
+      width: WIDTH_XS,
     },
   },
 });

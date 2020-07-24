@@ -2,66 +2,39 @@ import React, { Component } from "react";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import NewPaletteDataForm from "./NewPaletteDataForm";
 import {
   AppBar,
   Toolbar,
   IconButton,
   Typography,
   Button,
-  TextField,
 } from "@material-ui/core";
-import { Menu as MenuIcon } from "@material-ui/icons";
-
-const drawerWidth = 300;
-
-const styles = (theme) => ({
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: "none",
-  },
-  Toolbar: {
-    display: "flex",
-    "& button": {
-      margin: theme.spacing(1),
-    },
-  },
-  ToolbarForm: {
-    flex: "1",
-    display: "flex",
-  },
-  goBack: {
-    marginLeft: "auto",
-    textDecoration: "none",
-  },
-});
+import { Palette as PaletteIcon } from "@material-ui/icons";
+import styles from "./styles/NewPaletteNavStyles";
 
 export class NewPaletteNav extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      openDialog: false,
+    };
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleClickOpen() {
+    this.setState({ openDialog: true });
+  }
+
+  handleClose() {
+    this.setState({ openDialog: false });
+  }
+
   render() {
-    const {
-      toggleDrawer,
-      open,
-      handleAddPalette,
-      handleChange,
-      paletteName,
-      paletteNameErrorMessage,
-      classes,
-    } = this.props;
+    const { toggleDrawer, open, handleAddPalette, classes } = this.props;
+    const { openDialog } = this.state;
 
     return (
       <AppBar
@@ -70,42 +43,41 @@ export class NewPaletteNav extends Component {
         className={clsx(classes.appBar, { [classes.appBarShift]: open })}
       >
         <Toolbar className={classes.Toolbar}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
-            edge="start"
-            className={clsx(classes.menuButton, { [classes.hide]: open })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Create a Palette
-          </Typography>
-          <form
-            className={classes.ToolbarForm}
-            onSubmit={(evt) => handleAddPalette(evt, paletteName)}
-          >
-            <TextField
-              error={Boolean(paletteNameErrorMessage)}
-              id="outlined-error-helper-text"
-              label="Palette name"
-              name="paletteName"
-              helperText={paletteNameErrorMessage}
-              variant="outlined"
-              value={paletteName}
-              onChange={handleChange}
-            />
-            <Link className={classes.goBack} to="/">
+          <div className={classes.left}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              edge="start"
+              className={clsx(classes.paletteButton, { [classes.hide]: open })}
+            >
+              <PaletteIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap>
+              Create a Palette
+            </Typography>
+          </div>
+          <div className={classes.buttons}>
+            <Link to="/" className={classes.goBack}>
               <Button variant="contained" color="secondary">
                 Go Back
               </Button>
             </Link>
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleClickOpen}
+            >
               Save
             </Button>
-          </form>
+          </div>
         </Toolbar>
+        {openDialog && (
+          <NewPaletteDataForm
+            handleClose={this.handleClose}
+            handleAddPalette={handleAddPalette}
+          />
+        )}
       </AppBar>
     );
   }

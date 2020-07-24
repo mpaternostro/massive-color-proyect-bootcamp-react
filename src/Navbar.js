@@ -18,7 +18,7 @@ export class Navbar extends Component {
     } = this.props;
     return (
       <div className={classes.Navbar}>
-        <div className={classes.paletteName}>
+        <div className={classes.appName}>
           <Link to="/">
             <h1>React Color Picker</h1>
           </Link>

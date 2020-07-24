@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import { WIDTH_MD, WIDTH_SM, WIDTH_XS } from "../constants";
 
 const isDark = (color) => chroma(color).luminance() > 0.2;
 
@@ -11,9 +12,6 @@ const getVisibleBackground = (props) =>
   isDark(props.backgroundColor)
     ? "rgba(0, 0, 0, 0.1)"
     : "rgba(255, 255, 255, 0.3)";
-
-export const widthMd = "50%";
-export const widthXs = "100%";
 
 export default (theme) => ({
   ColorBox: {
@@ -37,19 +35,16 @@ export default (theme) => ({
       opacity: "1",
     },
     [theme.breakpoints.down("md")]: {
-      minWidth: widthMd,
+      width: (props) => (props.moreUrl ? WIDTH_MD : "20%"),
+      minHeight: "20%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: () => WIDTH_SM,
+      minHeight: "10%",
     },
     [theme.breakpoints.down("xs")]: {
-      minWidth: widthXs,
-    },
-  },
-  ColorBoxFixedHeight: {
-    height: "25%",
-    [theme.breakpoints.down("md")]: {
-      height: "10%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      height: "auto",
+      width: () => WIDTH_XS,
+      minHeight: "5%",
     },
   },
   copyColor: {
