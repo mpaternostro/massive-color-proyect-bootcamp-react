@@ -1,3 +1,5 @@
+import { getVisibleColor } from "../constants";
+
 export default (theme) => ({
   root: {
     backgroundColor: (props) => props.color,
@@ -30,10 +32,11 @@ export default (theme) => ({
     fontSize: "12px",
     letterSpacing: "1px",
     padding: "12px",
-    color: "rgba(0, 0, 0, 0.8)",
+    color: getVisibleColor,
     textTransform: "uppercase",
   },
   delete: {
+    color: getVisibleColor,
     transition: "all 0.3s ease-in-out",
   },
 });

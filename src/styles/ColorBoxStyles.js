@@ -1,21 +1,9 @@
-import chroma from "chroma-js";
 import { WIDTH_MD, WIDTH_SM, WIDTH_XS } from "../constants";
-
-const isDark = (color) => chroma(color).luminance() > 0.2;
-
-const getVisibleColor = (props) =>
-  isDark(props.backgroundColor)
-    ? "rgb(0, 0, 0, 0.8)"
-    : "rgb(255, 255, 255, 0.9)";
-
-const getVisibleBackground = (props) =>
-  isDark(props.backgroundColor)
-    ? "rgba(0, 0, 0, 0.1)"
-    : "rgba(255, 255, 255, 0.3)";
+import { getVisibleColor, getVisibleBackground } from "../constants";
 
 export default (theme) => ({
   ColorBox: {
-    backgroundColor: (props) => props.backgroundColor,
+    backgroundColor: (props) => props.color,
     color: getVisibleColor,
     display: "flex",
     width: "20%",

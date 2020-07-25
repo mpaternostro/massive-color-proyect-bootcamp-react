@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Alert from "./Alert";
 import { Snackbar } from "@material-ui/core";
+import Alert from "./Alert";
 
 export class CopySuccess extends Component {
   componentDidMount() {

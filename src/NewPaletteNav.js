@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
-import NewPaletteDataForm from "./NewPaletteDataForm";
+import clsx from "clsx";
 import {
   AppBar,
   Toolbar,
@@ -11,6 +9,8 @@ import {
   Button,
 } from "@material-ui/core";
 import { Palette as PaletteIcon } from "@material-ui/icons";
+import { Link } from "react-router-dom";
+import NewPaletteDataForm from "./NewPaletteDataForm";
 import styles from "./styles/NewPaletteNavStyles";
 
 export class NewPaletteNav extends Component {

@@ -1,21 +1,32 @@
 import React, { Component } from "react";
 import { getPaletteColors, getSingleColorShades } from "./colorHelpers";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { PalettesContext } from "./contexts/PalettesContext";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import PaletteList from "./PaletteList";
 import NewPalette from "./NewPalette";
 import Palette from "./Palette";
 import SingleColorPalette from "./SingleColorPalette";
-import "./App.css";
+import Page from "./Page";
+import { PalettesContext } from "./contexts/PalettesContext";
 
 class App extends Component {
+  static contextType = PalettesContext;
   getPalette = (routeProps) => {
-    const paletteData = getPaletteColors(
-      this.context.palettes,
-      routeProps.match.params.id
+    let paletteData;
+    try {
+      paletteData = getPaletteColors(
+        this.context.palettes,
+        routeProps.match.params.id
+      );
+    } catch (e) {
+      return <Redirect to="/" />;
+    }
+
+    return (
+      <Page>
+        <Palette {...paletteData} />
+      </Page>
     );
-    if (!paletteData) return <Redirect to="/page-not-found" />;
-    return <Palette palette={paletteData} />;
   };
 
   getSingleColorPalette = (routeProps) => {
@@ -25,47 +36,60 @@ class App extends Component {
       paletteID,
       colorID
     );
-    if (!singleColorShades.length) return <Redirect to="/page-not-found" />;
+    if (!singleColorShades.length) return <Redirect to="/" />;
+
     return (
-      <SingleColorPalette
-        palette={palette}
-        shades={singleColorShades}
-        {...routeProps}
-      />
+      <Page>
+        <SingleColorPalette
+          {...palette}
+          shades={singleColorShades}
+          {...routeProps}
+        />
+      </Page>
     );
   };
 
   render() {
     return (
       <div className="App">
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(routeProps) => (
-              <PaletteList palettes={this.context.palettes} {...routeProps} />
-            )}
-          />
-          <Route exact path="/palette/:id" render={this.getPalette} />
-          <Route
-            exact
-            path="/palette/:paletteID/:colorID"
-            render={this.getSingleColorPalette}
-          />
-          <Route
-            exact
-            path="/new-palette"
-            render={(routeProps) => <NewPalette {...routeProps} />}
-          />
-          <Route
-            path="/page-not-found"
-            render={() => <h1>Error 404: Page Not Found</h1>}
-          />
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup>
+              <CSSTransition key={location.key} classNames="page" timeout={500}>
+                <Switch location={location}>
+                  <Route
+                    exact
+                    path="/"
+                    render={({ history }) => (
+                      <Page>
+                        <PaletteList history={history} />
+                      </Page>
+                    )}
+                  />
+                  <Route exact path="/palette/:id" render={this.getPalette} />
+                  <Route
+                    exact
+                    path="/palette/:paletteID/:colorID"
+                    render={this.getSingleColorPalette}
+                  />
+                  <Route
+                    exact
+                    path="/new-palette"
+                    render={({ history }) => (
+                      <Page>
+                        <NewPalette history={history} />
+                      </Page>
+                    )}
+                  />
+                  <Route render={() => <Redirect to="/" />} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </div>
     );
   }
 }
-App.contextType = PalettesContext;
 
 export default App;

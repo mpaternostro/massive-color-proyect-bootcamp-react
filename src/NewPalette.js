@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 import arrayMove from "array-move";
 import {
   IconButton,
@@ -13,29 +13,25 @@ import { ChevronLeft as ChevronLeftIcon } from "@material-ui/icons";
 import NewPaletteNav from "./NewPaletteNav";
 import DraggableColorList from "./DraggableColorList";
 import ColorPickerForm from "./ColorPickerForm";
-import { PalettesContext } from "./contexts/PalettesContext";
 import styles from "./styles/NewPaletteStyles";
+import { PalettesContext } from "./contexts/PalettesContext";
 
 export class NewPalette extends Component {
   static contextType = PalettesContext;
   static defaultProps = {
     maxColors: 20,
+    defaultColors: [
+      { name: "red", color: "#FF0000" },
+      { name: "green", color: "#00FF00" },
+      { name: "blue", color: "#0000FF" },
+    ],
   };
   constructor(props) {
     super(props);
 
     this.state = {
       open: true,
-      currentPaletteColors: [
-        { name: "red", color: "#FF0000" },
-        { name: "blue", color: "#0048FF" },
-        { name: "green", color: "green" },
-        { name: "darkblue", color: "darkblue" },
-        { name: "darkgreen", color: "darkgreen" },
-        { name: "darkgray", color: "darkgray" },
-        { name: "gray", color: "gray" },
-        { name: "lightgray", color: "lightgray" },
-      ],
+      currentPaletteColors: this.props.defaultColors,
       paletteNameErrorMessage: "",
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
@@ -114,10 +110,13 @@ export class NewPalette extends Component {
   }
 
   addRandomColor() {
+    const { currentPaletteColors } = this.state;
     const allColors = this.context.palettes
       .map((palette) => palette.colors)
       .flat();
     const randomColor = allColors[Math.floor(Math.random() * allColors.length)];
+    if (currentPaletteColors.some(({ name }) => name === randomColor.name))
+      return this.addRandomColor();
     this.setState({
       currentPaletteColors: [...this.state.currentPaletteColors, randomColor],
     });
@@ -195,6 +194,7 @@ export class NewPalette extends Component {
             axis="xy"
             deleteColor={this.deleteColor}
             onSortEnd={this.onSortEnd}
+            distance={20}
           />
         </main>
       </div>

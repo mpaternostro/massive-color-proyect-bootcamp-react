@@ -42,7 +42,6 @@ export default (theme) => ({
     display: "flex",
     flexDirection: "column",
   },
-  title: {},
   buttons: {
     display: "flex",
     marginBottom: "1rem",

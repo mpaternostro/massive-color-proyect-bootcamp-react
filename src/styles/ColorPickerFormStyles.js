@@ -17,5 +17,6 @@ export default (theme) => ({
     width: "90%",
     height: "4rem",
     fontSize: "1.5rem",
+    transition: "background-color 0s, color 0.5s",
   },
 });

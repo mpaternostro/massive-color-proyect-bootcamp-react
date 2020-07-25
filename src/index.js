@@ -7,13 +7,11 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <PalettesProvider>
-        <App />
-      </PalettesProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <PalettesProvider>
+      <App />
+    </PalettesProvider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

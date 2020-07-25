@@ -38,17 +38,16 @@ export class Palette extends Component {
     this.setState({ format: evt.target.value, formatSnackbar: true });
   }
 
-  closeCopySuccess(evt, reason) {
+  closeCopySuccess() {
     this.setState({ copiedSnackbar: false });
   }
 
-  closeFormatChange(evt, reason) {
+  closeFormatChange() {
     this.setState({ formatSnackbar: false });
   }
 
   render() {
-    const { paletteName, emoji, id: paletteID, colors } = this.props.palette;
-    const { classes } = this.props;
+    const { classes, paletteName, emoji, id: paletteID, colors } = this.props;
     const {
       copiedSnackbar,
       copiedColor,
@@ -60,7 +59,7 @@ export class Palette extends Component {
       <ColorBox
         key={color.name}
         moreUrl={`/palette/${paletteID}/${color.id}`}
-        backgroundColor={color[this.state.format]}
+        color={color[format]}
         name={color.name}
         setCopied={this.setCopied}
       />
@@ -71,7 +70,7 @@ export class Palette extends Component {
         <Navbar
           level={level}
           handleColorLevel={this.setColorLevel}
-          format={this.state.format}
+          format={format}
           handleFormatChange={this.setFormat}
           displayColorLevel={true}
         />

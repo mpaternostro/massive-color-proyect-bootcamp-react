@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
@@ -14,7 +13,7 @@ export class ColorBox extends Component {
   }
 
   handleCopy() {
-    this.props.setCopied(this.props.backgroundColor);
+    this.props.setCopied(this.props.color);
   }
 
   handleLink(evt) {
@@ -22,10 +21,10 @@ export class ColorBox extends Component {
   }
 
   render() {
-    const { backgroundColor, name, moreUrl, classes } = this.props;
+    const { color, name, moreUrl, classes } = this.props;
 
     return (
-      <CopyToClipboard text={backgroundColor} onCopy={this.handleCopy}>
+      <CopyToClipboard text={color} onCopy={this.handleCopy}>
         <div className={classes.ColorBox}>
           <div className={classes.colorName}>
             <p>{name}</p>

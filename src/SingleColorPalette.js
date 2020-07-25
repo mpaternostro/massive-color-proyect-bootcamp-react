@@ -32,22 +32,21 @@ export class SingleColorPalette extends Component {
     this.setState({ format: evt.target.value, formatSnackbar: true });
   }
 
-  closeCopySuccess(evt, reason) {
+  closeCopySuccess() {
     this.setState({ copiedSnackbar: false });
   }
 
-  closeFormatChange(evt, reason) {
+  closeFormatChange() {
     this.setState({ formatSnackbar: false });
   }
 
   render() {
-    const { classes, palette, shades } = this.props;
-    const { paletteName, emoji, id } = palette;
+    const { classes, paletteName, emoji, id, shades } = this.props;
     const { format, copiedColor, copiedSnackbar, formatSnackbar } = this.state;
     const boxes = shades.map((shade) => (
       <ColorBox
         key={shade.name}
-        backgroundColor={shade[format]}
+        color={shade[format]}
         name={shade.name}
         setCopied={this.setCopied}
         moreUrl={false}

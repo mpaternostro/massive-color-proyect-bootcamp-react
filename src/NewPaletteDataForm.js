@@ -6,8 +6,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
 import { PalettesContext } from "./contexts/PalettesContext";
 
 export class NewPaletteDataForm extends Component {
@@ -59,6 +59,7 @@ export class NewPaletteDataForm extends Component {
       emoji: emoji.native,
     };
     this.props.handleAddPalette(newPalette);
+    this.setState({ stage: "" });
   }
 
   render() {

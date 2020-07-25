@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { ChromePicker } from "react-color";
 import { Button, TextField } from "@material-ui/core";
+import { ChromePicker } from "react-color";
 import styles from "./styles/ColorPickerFormStyles";
+import { getVisibleColor } from "./constants";
 
 export class ColorPickerForm extends Component {
   constructor(props) {
@@ -101,10 +102,10 @@ export class ColorPickerForm extends Component {
           disabled={isPaletteFull}
           style={{
             backgroundColor: isPaletteFull ? "gray" : this.state.color,
-            transition: "none",
+            color: getVisibleColor(this.state),
           }}
         >
-          {isPaletteFull ? "Palette Full" : "Add Color"}
+          <p>{isPaletteFull ? "Palette Full" : "Add Color"}</p>
         </Button>
       </form>
     );

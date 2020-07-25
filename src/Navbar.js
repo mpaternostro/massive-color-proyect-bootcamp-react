@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import styles from "./styles/NavbarStyles";
 import "rc-slider/assets/index.css";

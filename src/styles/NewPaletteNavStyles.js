@@ -33,6 +33,7 @@ export default (theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       paddingLeft: "1rem",
+      paddingRight: "0",
     },
   },
   left: {
