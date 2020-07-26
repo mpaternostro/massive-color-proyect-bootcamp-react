@@ -4,14 +4,14 @@ import "./index.css";
 import App from "./App";
 import { PalettesProvider } from "./contexts/PalettesContext";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <PalettesProvider>
       <App />
     </PalettesProvider>
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById("root")
 );
 

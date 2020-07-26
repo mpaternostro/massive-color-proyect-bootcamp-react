@@ -60,12 +60,10 @@ export class SingleColorPalette extends Component {
           handleFormatChange={this.setFormat}
           displayColorLevel={false}
         />
-        <div>
-          <div className={classes.colorBoxes}>
-            {boxes}
-            <div className={classes.goBack}>
-              <Link to={`/palette/${id}`}>Go Back</Link>
-            </div>
+        <div className={classes.colorBoxes}>
+          {boxes}
+          <div className={classes.goBack}>
+            <Link to={`/palette/${id}`}>Go Back</Link>
           </div>
         </div>
         {copiedSnackbar && (

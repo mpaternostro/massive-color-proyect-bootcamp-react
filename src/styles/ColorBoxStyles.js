@@ -13,11 +13,11 @@ export default (theme) => ({
     "& p": {
       margin: "0",
       padding: "10px",
+      width: "200%",
       fontSize: "12px",
       textTransform: "uppercase",
       fontWeight: "500",
       letterSpacing: "1px",
-      whiteSpace: "nowrap",
     },
     "&:hover $copyColor": {
       opacity: "1",

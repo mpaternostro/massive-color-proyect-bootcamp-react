@@ -23,7 +23,6 @@ export default (theme) => ({
   },
   container: {
     width: "50%",
-    margin: "2rem 0",
     "@media (max-width: 1500px)": {
       width: "60%",
     },

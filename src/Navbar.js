@@ -24,7 +24,7 @@ export function Navbar({
   const matches = useMediaQuery(theme.breakpoints.down("xs"));
 
   return (
-    <div className={classes.Navbar}>
+    <nav className={classes.Navbar}>
       <div className={classes.appName}>
         <Link to="/">
           <h1>React Color Picker</h1>
@@ -84,7 +84,7 @@ export function Navbar({
           </FormControl>
         )}
       </div>
-    </div>
+    </nav>
   );
 }
 

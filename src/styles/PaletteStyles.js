@@ -2,9 +2,10 @@ import { WIDTH_SM, WIDTH_XS } from "../constants";
 
 export default (theme) => ({
   colorBoxes: {
+    flex: "1",
     display: "flex",
     flexWrap: "wrap",
-    height: "87vh",
+    // height: "85%",
   },
   goBack: {
     backgroundColor: "black",

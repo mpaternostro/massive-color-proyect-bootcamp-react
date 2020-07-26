@@ -1,14 +1,20 @@
 export default (theme) => ({
   Navbar: {
-    height: "8vh",
+    height: "75px",
     display: "flex",
     alignItems: "center",
   },
   appName: {
     backgroundColor: "tomato",
+    display: "flex",
+    alignItems: "center",
     padding: "0 10px",
     height: "100%",
     width: "270px",
+    "& h1": {
+      fontSize: "2em",
+      margin: "0",
+    },
     "& a": {
       textDecoration: "none",
       color: "black",
@@ -18,7 +24,6 @@ export default (theme) => ({
       "& h1": {
         textAlign: "center",
         fontSize: "30px",
-        margin: "0",
       },
     },
     [theme.breakpoints.down("xs")]: {
