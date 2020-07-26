@@ -14,12 +14,19 @@ export default (theme) => ({
       color: "black",
     },
     [theme.breakpoints.down("sm")]: {
-      display: (props) => (props.displayColorLevel ? "none" : ""),
-      width: "200px",
+      width: "160px",
       "& h1": {
         textAlign: "center",
         fontSize: "30px",
         margin: "0",
+      },
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "110px",
+      display: "flex",
+      alignItems: "center",
+      "& h1": {
+        fontSize: "20px",
       },
     },
   },
@@ -53,8 +60,14 @@ export default (theme) => ({
   slider: {
     width: "350px",
     marginLeft: "0.5rem",
-    [theme.breakpoints.down("xs")]: {
-      width: "200px",
+    [theme.breakpoints.down("sm")]: {
+      width: "220px",
+    },
+    "@media (max-width: 500px)": {
+      width: "150px",
+    },
+    "@media (max-width: 400px)": {
+      width: "100px",
     },
   },
   formatSelect: {

@@ -54,7 +54,7 @@ class App extends Component {
       <div className="App">
         <Route
           render={({ location }) => (
-            <TransitionGroup>
+            <TransitionGroup component={null}>
               <CSSTransition key={location.key} classNames="page" timeout={500}>
                 <Switch location={location}>
                   <Route
