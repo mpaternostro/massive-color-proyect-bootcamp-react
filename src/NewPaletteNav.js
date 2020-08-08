@@ -53,7 +53,7 @@ export class NewPaletteNav extends Component {
             >
               <PaletteIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
+            <Typography variant="h6" className={classes.title} noWrap>
               Create a Palette
             </Typography>
           </div>

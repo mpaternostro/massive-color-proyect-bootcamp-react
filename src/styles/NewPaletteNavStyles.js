@@ -17,8 +17,8 @@ export default (theme) => ({
   },
   paletteButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.down("")]: {
-      marginRight: theme.spacing(1),
+    [theme.breakpoints.down("xs")]: {
+      marginRight: theme.spacing(0),
     },
   },
   hide: {
@@ -28,9 +28,6 @@ export default (theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    "& button": {
-      height: "40px",
-    },
     [theme.breakpoints.down("xs")]: {
       paddingLeft: "1rem",
       paddingRight: "0",
@@ -40,23 +37,26 @@ export default (theme) => ({
     display: "flex",
     alignItems: "center",
   },
+  title: {
+    fontSize: "1.1rem",
+  },
   buttons: {
     "& button": {
       marginRight: theme.spacing(2),
       width: "100px",
+      height: "40px",
       [theme.breakpoints.down("xs")]: {
         marginRight: theme.spacing(1),
         width: "80px",
+        height: "35px",
       },
     },
   },
   goBack: {
     textDecoration: "none",
     color: "inherit",
-    "& button": {
-      [theme.breakpoints.down("xs")]: {
-        padding: "0",
-      },
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
     },
   },
 });
