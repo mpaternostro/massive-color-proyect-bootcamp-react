@@ -3,10 +3,16 @@ import { DRAWER_WIDTH } from "../constants";
 export default (theme) => ({
   drawer: {
     width: DRAWER_WIDTH,
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
     flexShrink: 0,
   },
   drawerPaper: {
     width: DRAWER_WIDTH,
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   drawerHeader: {
     display: "flex",
@@ -32,15 +38,11 @@ export default (theme) => ({
     }),
     marginLeft: 0,
   },
-  currentPaletteColors: {
-    height: "calc(100vh - 64px)",
-    margin: "0",
-    padding: "0",
-  },
   container: {
     margin: "0.5rem",
     display: "flex",
     flexDirection: "column",
+    height: "100%",
   },
   buttons: {
     display: "flex",

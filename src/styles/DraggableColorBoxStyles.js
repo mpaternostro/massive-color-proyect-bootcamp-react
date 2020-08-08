@@ -18,15 +18,15 @@ export default (theme) => ({
       width: "100%",
       height: "5%",
     },
-    "&:hover $delete": {
-      transform: "scale(1.4)",
-    },
   },
   container: {
     height: "100%",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "flex-end",
+    [theme.breakpoints.down("xs")]: {
+      alignItems: "center",
+    },
   },
   name: {
     fontSize: "12px",
@@ -35,8 +35,12 @@ export default (theme) => ({
     color: getVisibleColor,
     textTransform: "uppercase",
   },
+  deleteButton: {
+    [theme.breakpoints.down("xs")]: {
+      padding: "6px",
+    },
+  },
   delete: {
     color: getVisibleColor,
-    transition: "all 0.3s ease-in-out",
   },
 });
