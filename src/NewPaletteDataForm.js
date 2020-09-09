@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
-import { PalettesContext } from "./contexts/PalettesContext";
+import { PalettesContext } from "./contexts/palettes.context";
 
 export class NewPaletteDataForm extends Component {
   static contextType = PalettesContext;

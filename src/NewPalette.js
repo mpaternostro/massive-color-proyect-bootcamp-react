@@ -14,7 +14,7 @@ import NewPaletteNav from "./NewPaletteNav";
 import DraggableColorList from "./DraggableColorList";
 import ColorPickerForm from "./ColorPickerForm";
 import styles from "./styles/NewPaletteStyles";
-import { PalettesContext } from "./contexts/PalettesContext";
+import { PalettesContext } from "./contexts/palettes.context";
 
 export class NewPalette extends Component {
   static contextType = PalettesContext;
@@ -83,7 +83,7 @@ export class NewPalette extends Component {
       id: paletteName.toLowerCase().replace(/ /g, "-"),
       colors: this.state.currentPaletteColors,
     };
-    this.context.addPalette(newPalette);
+    this.context.dispatch({ type: "add", newPalette });
     this.props.history.push("/");
   }
 
