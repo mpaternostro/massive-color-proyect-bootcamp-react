@@ -7,7 +7,7 @@ import NewPalette from "./NewPalette";
 import Palette from "./Palette";
 import SingleColorPalette from "./SingleColorPalette";
 import Page from "./Page";
-import { PalettesContext } from "./contexts/PalettesContext";
+import { PalettesContext } from "./contexts/palettes.context";
 
 class App extends Component {
   static contextType = PalettesContext;

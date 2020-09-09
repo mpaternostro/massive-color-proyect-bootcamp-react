@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import MiniPalette from "./MiniPalette";
 import styles from "./styles/PaletteListStyles";
-import { PalettesContext } from "./contexts/PalettesContext";
+import { PalettesContext } from "./contexts/palettes.context";
 
 export class PaletteList extends Component {
   static contextType = PalettesContext;
@@ -36,7 +36,7 @@ export class PaletteList extends Component {
   handleDelete(evt) {
     const { deletePaletteID } = this.state;
     evt.stopPropagation();
-    this.context.removePalette(deletePaletteID);
+    this.context.dispatch({ type: "delete", paletteID: deletePaletteID });
     this.handleCloseDialog();
   }
 
